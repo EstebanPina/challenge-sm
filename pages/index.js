@@ -1,7 +1,6 @@
 import { useState } from "react";
 import InputCreacion from "../components/InputCreacion";
 import InputInicio from "../components/InputInicio";
-import ModalInicio from "../components/ModalInicio";
 
 export default function Home() {
   const [showModal,setShowModal]=useState(false)
@@ -18,7 +17,6 @@ export default function Home() {
     <div>
     <div className=' min-h-screen grid place-content-center'>
       <button type="button" className=" bg-aqua p-4 shadow-md font-regular text-white" onClick={()=>setShowModal(!showModal)}> Open Modal </button>
-      <ModalInicio showModal={showModal}></ModalInicio>
     </div>
     <div className={showModal?"bg-neutral-700/80 absolute grid place-content-center left-0 top-0 z-0 min-h-screen min-w-full":"hidden"} >
             <div className="relative bg-white min-w-[420px] min-h-72 z-10">
