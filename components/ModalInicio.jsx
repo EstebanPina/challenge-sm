@@ -1,11 +1,9 @@
-import { useState } from "react";
-import InputCreacion from "../components/InputCreacion";
-import InputInicio from "../components/InputInicio";
-import ModalInicio from "../components/ModalInicio";
 
-export default function Home() {
-  const [showModal,setShowModal]=useState(false)
-  const [modalInicio, setModalVersion]=useState(true)
+import { useState } from "react";
+import InputCreacion from "./InputCreacion";
+import InputInicio from "./InputInicio";
+const ModalInicio = ({showModal}) => {
+    const [modalInicio, setModalVersion]=useState(true)
     const toggleModal=()=>{
         setModalVersion(!modalInicio)
     }
@@ -14,16 +12,11 @@ export default function Home() {
         const form = document.querySelector('form')
         console.log(Object.values(form).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {}))
     }
-  return (
-    <div>
-    <div className=' min-h-screen grid place-content-center'>
-      <button type="button" className=" bg-aqua p-4 shadow-md font-regular text-white" onClick={()=>setShowModal(!showModal)}> Open Modal </button>
-      <ModalInicio showModal={showModal}></ModalInicio>
-    </div>
-    <div className={showModal?"bg-neutral-700/80 absolute grid place-content-center left-0 top-0 z-0 min-h-screen min-w-full":"hidden"} >
-            <div className="relative bg-white min-w-[420px] min-h-72 z-10">
+    return ( 
+    <div className={showModal?"bg-neutral-700/80 absolute grid place-content-center left-0 top-0 min-h-screen min-w-full":"hidden"} onClick={()=>{showModal=false}}>
+            <div className="bg-white min-w-[420px] min-h-72">
             <div className=" text-black w-full flex justify-end p-3 pb-2">
-                <button type="button" className="hover:scale-105 duration-200" onClick={()=>{setShowModal(!showModal)}}>
+                <button type="button" className="hover:scale-105 duration-200">
                     <img src="https://img.icons8.com/ios-filled/344/delete-sign--v1.png" width={"25px"}></img>
                 </button>
             </div>
@@ -40,6 +33,7 @@ export default function Home() {
                 
             </div>
         </div>
-        </div>
-  )
+     );
 }
+ 
+export default ModalInicio;
